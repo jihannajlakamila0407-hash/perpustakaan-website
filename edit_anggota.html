@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% set heading="Edit Anggota" %}
+
+{% block content %}
+<div class="page-intro">
+    <div>
+        <span class="eyebrow">DATA MASTER</span>
+        <h1>Edit Anggota</h1>
+        <p>Ubah informasi anggota perpustakaan.</p>
+    </div>
+</div>
+
+<section class="panel form-panel">
+    <div class="panel-head">
+        <h3>Form Edit Anggota</h3>
+    </div>
+
+    <form method="post" class="form">
+        <label>Nama Anggota
+            <input type="text" name="nama"
+                   value="{{ row.nama_anggota }}" required>
+        </label>
+
+        <div class="form-row">
+            <label>Jenis Kelamin
+                <select name="jk" required>
+                    <option value="Laki-laki"
+                    {% if row.jenis_kelamin == 'Laki-laki' %}selected{% endif %}>
+                        Laki-laki
+                    </option>
+
+                    <option value="Perempuan"
+                    {% if row.jenis_kelamin == 'Perempuan' %}selected{% endif %}>
+                        Perempuan
+                    </option>
+                </select>
+            </label>
+
+            <label>Kelas
+                <input type="text" name="kelas"
+                       value="{{ row.kelas or '' }}">
+            </label>
+        </div>
+
+        <label>Alamat
+            <textarea name="alamat" rows="3">{{ row.alamat or '' }}</textarea>
+        </label>
+
+        <label>Nomor HP
+            <input type="text" name="no_hp"
+                   value="{{ row.no_hp or '' }}">
+        </label>
+
+        <button class="btn" type="submit">Simpan Perubahan</button>
+        <a href="{{ url_for('anggota') }}">Kembali</a>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,52 @@
+
+{% extends "base.html" %}
+{% set heading="Edit Buku" %}
+
+{% block content %}
+<div class="page-intro">
+    <div>
+        <span class="eyebrow">DATA MASTER</span>
+        <h1>Edit Buku</h1>
+        <p>Ubah informasi koleksi buku perpustakaan.</p>
+    </div>
+</div>
+
+<section class="panel form-panel">
+    <div class="panel-head">
+        <h3>Form Edit Buku</h3>
+    </div>
+
+    <form method="post" class="form">
+        <label>Judul Buku
+            <input name="judul" value="{{ row.judul_buku }}" required>
+        </label>
+
+        <label>Pengarang
+            <input name="pengarang" value="{{ row.pengarang or '' }}">
+        </label>
+
+        <label>Penerbit
+            <input name="penerbit" value="{{ row.penerbit or '' }}">
+        </label>
+
+        <div class="form-row">
+            <label>Tahun Terbit
+                <input name="tahun" type="number"
+                       value="{{ row.tahun_terbit or '' }}">
+            </label>
+
+            <label>Stok
+                <input name="stok" type="number" min="0"
+                       value="{{ row.stok }}" required>
+            </label>
+        </div>
+
+        <label>Kategori
+            <input name="kategori" value="{{ row.kategori or '' }}">
+        </label>
+
+        <button class="btn" type="submit">Simpan Perubahan</button>
+        <a href="{{ url_for('buku') }}">Kembali</a>
+    </form>
+</section>
+{% endblock %}

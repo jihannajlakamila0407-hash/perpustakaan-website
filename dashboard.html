@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% set heading="Dashboard" %}{% block content %}
+<section class="welcome"><div><span class="pill">RINGKASAN PERPUSTAKAAN</span><h1>Selamat datang di<br><em>Ruang Baca.</em></h1><p>Pantau koleksi, anggota, petugas, dan aktivitas peminjaman dalam satu tempat.</p></div><div class="welcome-art"><div class="book b1"></div><div class="book b2"></div><div class="book b3"></div><div class="plant">✦</div></div></section>
+<div class="stats">
+  <div class="stat"><span class="stat-icon">♧</span><small>Total Anggota</small><strong>{{ counts.anggota }}</strong><span class="stat-note">Data terdaftar</span></div>
+  <div class="stat"><span class="stat-icon">▤</span><small>Total Buku</small><strong>{{ counts.buku }}</strong><span class="stat-note">Judul koleksi</span></div>
+  <div class="stat"><span class="stat-icon">♙</span><small>Total Petugas</small><strong>{{ counts.petugas }}</strong><span class="stat-note">Pengelola aktif</span></div>
+  <div class="stat"><span class="stat-icon">⇄</span><small>Total Peminjaman</small><strong>{{ counts.peminjaman }}</strong><span class="stat-note">Transaksi tercatat</span></div>
+</div>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">AKTIVITAS TERBARU</span><h3>Peminjaman terakhir</h3></div><a class="text-link" href="{{ url_for('peminjaman') }}">Lihat semua →</a></div>
+<div class="table-wrap"><table><thead><tr><th>ANGGOTA</th><th>JUDUL BUKU</th><th>TANGGAL PINJAM</th><th>STATUS</th></tr></thead><tbody>
+{% for r in recent %}<tr><td>{{ r.nama_anggota }}</td><td>{{ r.judul_buku }}</td><td>{{ r.tanggal_pinjam }}</td><td><span class="status {{ 'done' if r.status=='Dikembalikan' else 'ongoing' }}">{{ r.status }}</span></td></tr>{% else %}<tr><td colspan="4" class="empty">Belum ada transaksi peminjaman.</td></tr>{% endfor %}
+</tbody></table></div></section>{% endblock %}

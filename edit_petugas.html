@@ -1,0 +1,42 @@
+
+{% extends "base.html" %}
+{% set heading="Edit Petugas" %}
+
+{% block content %}
+<div class="page-intro">
+    <div>
+        <span class="eyebrow">DATA MASTER</span>
+        <h1>Edit Petugas</h1>
+        <p>Ubah informasi petugas perpustakaan.</p>
+    </div>
+</div>
+
+<section class="panel form-panel">
+    <div class="panel-head">
+        <h3>Form Edit Petugas</h3>
+    </div>
+
+    <form method="post" class="form">
+        <label>Nama Petugas
+            <input name="nama" value="{{ row.nama_petugas }}" required>
+        </label>
+
+        <label>Username
+            <input name="username" value="{{ row.username }}" required>
+        </label>
+
+        <label>Password
+            <input name="password" type="password"
+                   value="{{ row.password }}" required>
+        </label>
+
+        <label>Nomor HP
+            <input name="no_hp" value="{{ row.no_hp or '' }}">
+        </label>
+
+        <button class="btn" type="submit">Simpan Perubahan</button>
+
+        <a href="{{ url_for('petugas') }}">Kembali</a>
+    </form>
+</section>
+{% endblock %}
